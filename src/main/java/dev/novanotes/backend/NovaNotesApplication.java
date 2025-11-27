@@ -16,5 +16,4 @@ public class NovaNotesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(NovaNotesApplication.class, args);
 	}
-
 }
