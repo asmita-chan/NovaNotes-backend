@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "dev.novanotes.backend.entity")
+@EnableJpaRepositories(basePackages = "dev.novanotes.backend.dao")
 @EntityScan(basePackages = "dev.novanotes.backend.entity")
 @EnableTransactionManagement
 public class NovaNotesApplication {

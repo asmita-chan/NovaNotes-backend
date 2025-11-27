@@ -66,5 +66,4 @@ public class UsersDaoImpl implements UsersDao{
 		List<Users> users = entityManager.createQuery(jpql, Users.class).setParameter("loginId", loginId).getResultList();
 		return users.isEmpty() ? null : users.get(0);
 	}
-
 }

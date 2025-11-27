@@ -26,6 +26,9 @@ public class Users {
 	@Column(name = "user_pwd")
 	private String userPwd;
 	
+	@Column(name = "mobile")
+	private String mobile;
+	
 	@Column(name = "email")
 	private String email;
 	
@@ -77,6 +80,14 @@ public class Users {
 
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 	public String getEmail() {
@@ -150,5 +161,4 @@ public class Users {
 	public void setUpdatedBy(Long updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-
 }

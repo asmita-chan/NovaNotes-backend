@@ -23,8 +23,11 @@ public class Notes {
 	@Column(name = "title")
 	private String title;
 	
-	@Column(name = "content")
+	@Column(name = "content", columnDefinition = "TEXT")
 	private String content;
+	
+	@Column(name = "is_done")
+	private Boolean isDone;
 	
 	@Column(name = "active_flag")
 	private Boolean activeFlag;
@@ -67,6 +70,14 @@ public class Notes {
 		this.content = content;
 	}
 
+	public Boolean getIsDone() {
+		return isDone;
+	}
+
+	public void setIsDone(Boolean isDone) {
+		this.isDone = isDone;
+	}
+
 	public Boolean getActiveFlag() {
 		return activeFlag;
 	}
@@ -106,5 +117,4 @@ public class Notes {
 	public void setUpdatedBy(Long updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-
 }
