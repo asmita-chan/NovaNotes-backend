@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class NovaNotesApplication {
 
-//	set JAVA_HOME=C:\Program Files\Java\jdk-17
+//	set JAVA_HOME=C:\Program Files\Java\jdk-17 
 	public static void main(String[] args) {
 		SpringApplication.run(NovaNotesApplication.class, args);
 	}
