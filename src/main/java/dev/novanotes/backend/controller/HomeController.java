@@ -21,8 +21,8 @@ public class HomeController {
 	HomeService homeService;
 	
 	@GetMapping("/")
-	public String home() {
-		return "Welcome to NovaNotes";
+	public StatusBean home() {
+		return new StatusBean(String.valueOf(HttpServletResponse.SC_OK), "Welcome to Novanotes", "");
 	}
 	
 	@PostMapping("/addNote")
