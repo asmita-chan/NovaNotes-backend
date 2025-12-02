@@ -1,8 +1,9 @@
 package dev.novanotes.backend.service;
 
+import dev.novanotes.backend.bean.LoginResponse;
 import dev.novanotes.backend.entity.Users;
 
 public interface AuthService {
-	String login(String username, String password);
-	String register(Users user);
+	LoginResponse login(String username, String password);
+	LoginResponse register(Users user);
 } 

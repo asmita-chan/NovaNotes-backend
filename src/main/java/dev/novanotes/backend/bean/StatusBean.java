@@ -3,13 +3,13 @@ package dev.novanotes.backend.bean;
 public class StatusBean {
 	private String StatusCode;
 	private String GeneratedCode;
-	private String accessToken;
+	private LoginResponse loginResponse;
 	
-	public StatusBean(String statusCode, String generatedCode, String accessToken) {
+	public StatusBean(String statusCode, String generatedCode, LoginResponse loginResponse) {
 		super();
 		StatusCode = statusCode;
 		GeneratedCode = generatedCode;
-		this.accessToken = accessToken;
+		this.loginResponse = loginResponse;
 	}
 	public String getStatusCode() {
 		return StatusCode;
@@ -23,10 +23,10 @@ public class StatusBean {
 	public void setGeneratedCode(String generatedCode) {
 		GeneratedCode = generatedCode;
 	}
-	public String getAccessToken() {
-		return accessToken;
+	public LoginResponse getLoginResponse() {
+		return loginResponse;
 	}
-	public void setAccessToken(String accessToken) {
-		this.accessToken = accessToken;
+	public void setLoginResponse(LoginResponse loginResponse) {
+		this.loginResponse = loginResponse;
 	}
 }

@@ -22,7 +22,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public StatusBean home() {
-		return new StatusBean(String.valueOf(HttpServletResponse.SC_OK), "Welcome to Novanotes", "");
+		return new StatusBean(String.valueOf(HttpServletResponse.SC_OK), "Welcome to Novanotes", null);
 	}
 	
 	@PostMapping("/addNote")
@@ -34,8 +34,8 @@ public class HomeController {
 	@PostMapping("/deleteNote")
 	public @ResponseBody StatusBean deleteNote(@RequestBody Notes note) {
 		String status = homeService.deleteNote(note.getNotesId());
-		if("DELETED".equals(status)) return new StatusBean(String.valueOf(HttpServletResponse.SC_OK), "DELETED", "");
-		return new StatusBean(String.valueOf(HttpServletResponse.SC_NOT_MODIFIED), "Not Found", "");
+		if("DELETED".equals(status)) return new StatusBean(String.valueOf(HttpServletResponse.SC_OK), "DELETED", null);
+		return new StatusBean(String.valueOf(HttpServletResponse.SC_NOT_MODIFIED), "Not Found", null);
 	}
 	
 	@PostMapping("/updateNote")

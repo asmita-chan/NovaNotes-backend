@@ -4,15 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import dev.novanotes.backend.bean.LoginResponse;
 import dev.novanotes.backend.dao.UserRolesDao;
 import dev.novanotes.backend.dao.UsersDao;
 import dev.novanotes.backend.entity.UserRoleKey;
 import dev.novanotes.backend.entity.UserRoles;
 import dev.novanotes.backend.entity.Users;
+import dev.novanotes.backend.security.CustomUserDetails;
 import dev.novanotes.backend.security.CustomUserDetailsService;
 import dev.novanotes.backend.security.JwtUtil;
 import dev.novanotes.backend.service.AuthService;
@@ -39,15 +40,18 @@ public class AuthServiceImpl implements AuthService {
 	}
 
 	@Override
-	public String login(String username, String password) {
+	public LoginResponse login(String username, String password) {
 		Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		System.out.println("auth ------>" + auth);
-		UserDetails userDetails = (UserDetails) auth.getPrincipal();
-		return jwtUtil.generateToken(userDetails);
+		CustomUserDetails userDetails = (CustomUserDetails) auth.getPrincipal();
+		LoginResponse response = new LoginResponse();
+		response.setToken(jwtUtil.generateToken(userDetails));
+		response.setUserId(userDetails.getUser().getUserId());
+		return response;
 	}
 
 	@Override
-	public String register(Users user) {
+	public LoginResponse register(Users user) {
 		Users existingUser = usersDao.findByLoginId(user.getLoginId());
 		if(existingUser != null) {
 			throw new RuntimeException("Username already taken");
@@ -65,8 +69,11 @@ public class AuthServiceImpl implements AuthService {
 		userRoles.setId(key);
 		userRolesDao.save(userRoles);
 		
-		UserDetails userDetails = customUserDetailsService.loadUserByUsername(savedUser.getLoginId());
-		return jwtUtil.generateToken(userDetails);
+		CustomUserDetails userDetails = (CustomUserDetails) customUserDetailsService.loadUserByUsername(savedUser.getLoginId());
+		LoginResponse response = new LoginResponse();
+		response.setToken(jwtUtil.generateToken(userDetails));
+		response.setUserId(savedUser.getUserId());
+		return response;
 	}
 	
 }
