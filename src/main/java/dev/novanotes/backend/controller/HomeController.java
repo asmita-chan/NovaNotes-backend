@@ -1,5 +1,6 @@
 package dev.novanotes.backend.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +46,10 @@ public class HomeController {
 		return foundNote;
 	}
 	
-	@GetMapping("/getAllNotes")
+	@PostMapping("/getAllNotes")
 	public @ResponseBody List<Notes> getAllNotes(@RequestBody Notes note){
 		List<Notes> notesList = homeService.getAllNotes(note.getCreatedBy());
-		return notesList;
+		return notesList == null ? Collections.emptyList() : notesList;
 	}
 
 }

@@ -35,6 +35,7 @@ public class Users {
 	@Column(name = "last_changed_pwd")
 	private Timestamp lastChangedPwd;
 	
+	@UpdateTimestamp
 	@Column(name = "last_login_updated_on")
 	private Timestamp lastLoginUpdatedOn;
 	

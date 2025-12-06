@@ -38,7 +38,7 @@ public class HomeDaoImpl implements HomeDao {
 
 	@Override
 	public List<Notes> getAllNotes(Long userId) {
-		String jpql = "SELECT u FROM Notes u WHERE u.createdBy = :createdBy";
+		String jpql = "SELECT u FROM Notes u WHERE u.createdBy = :createdBy ORDER BY u.notesId";
 		List<Notes> notes = entityManager.createQuery(jpql, Notes.class).setParameter("createdBy", userId).getResultList();
 		return notes;
 	}
