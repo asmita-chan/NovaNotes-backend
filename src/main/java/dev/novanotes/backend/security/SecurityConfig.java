@@ -1,5 +1,7 @@
 package dev.novanotes.backend.security;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,7 +43,7 @@ public class SecurityConfig {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 	    CorsConfiguration config = new CorsConfiguration();
-	    config.addAllowedOrigin("http://localhost:4200");
+	    config.setAllowedOriginPatterns(List.of("http://localhost:4200", "https://novanotesapp.netlify.app"));
 	    config.addAllowedHeader("*");
 	    config.addAllowedMethod("*");
 	    config.setAllowCredentials(true);
